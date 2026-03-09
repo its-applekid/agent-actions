@@ -208,7 +208,7 @@ Bot
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Private Key Exfiltration</td>
-                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3 text-red">❌</td>
                   <td className="px-4 py-3">❌</td>
                   <td className="px-4 py-3 text-green">✅</td>
                   <td className="px-4 py-3">❌</td>
@@ -228,7 +228,7 @@ Bot
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Agent Self-Modification</td>
-                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3 text-red">❌</td>
                   <td className="px-4 py-3">❌</td>
                   <td className="px-4 py-3 text-yellow">⚠️</td>
                   <td className="px-4 py-3">❌</td>
@@ -242,7 +242,7 @@ Bot
                   <td className="px-4 py-3 text-terminal-muted">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3 text-red">❌</td>
                   <td className="px-4 py-3 text-terminal-muted">N/A</td>
                   <td className="px-4 py-3 text-green font-bold">✅</td>
                 </tr>
