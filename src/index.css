@@ -7,22 +7,29 @@
 
 @layer base {
   * {
-    @apply border-terminal-border;
+    border-color: #504945;
   }
   
   body {
-    @apply bg-terminal-bg text-terminal-text font-mono;
-    @apply m-0 p-0;
-    @apply selection:bg-terminal-muted selection:text-terminal-bg;
+    background-color: #1d2021;
+    color: #ebdbb2;
+    font-family: 'JetBrains Mono', Monaco, Menlo, Consolas, monospace;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body ::selection {
+    background-color: #928374;
+    color: #1d2021;
   }
 
   html,
   body,
   #root {
-    @apply w-full min-h-full;
+    width: 100%;
+    min-height: 100%;
   }
 
-  /* Disable ligatures in code blocks */
   pre,
   code {
     font-variant-ligatures: none;
@@ -36,11 +43,11 @@
   }
   
   .terminal-window {
-    @apply bg-terminal-code rounded-lg border border-terminal-border;
+    @apply bg-[#282828] rounded-lg border border-[#504945];
   }
   
   .terminal-header {
-    @apply flex items-center gap-2 px-4 py-3 border-b border-terminal-border;
+    @apply flex items-center gap-2 px-4 py-3 border-b border-[#504945];
   }
   
   .terminal-dot {

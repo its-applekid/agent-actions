@@ -8,13 +8,7 @@ export default {
         display: ['VT323', 'monospace'],
       },
       colors: {
-        red: '#FF0621',
-        orange: '#fe8019',
-        yellow: '#fabd2f',
-        green: '#b8bb26',
-        aqua: '#8ec07c',
-        blue: '#83a598',
-        purple: '#d3869b',
+        'optimism-red': '#FF0621',
         terminal: {
           bg: '#1d2021',
           code: '#282828',
