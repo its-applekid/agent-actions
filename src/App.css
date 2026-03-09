@@ -14,12 +14,3 @@
   text-decoration-style: solid;
 }
 
-/* Mobile: add info icon indicator */
-@media (hover: none) and (pointer: coarse) {
-  .cursor-help::after {
-    content: " ⓘ";
-    font-size: 0.7rem;
-    opacity: 0.6;
-    margin-left: 2px;
-  }
-}

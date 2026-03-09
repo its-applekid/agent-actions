@@ -119,6 +119,9 @@ function App() {
 
         {/* Problem */}
         <section className="max-w-4xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            THE_PROBLEM
+          </h3>
           <div className="terminal-window">
             <div className="terminal-header">
               <div className="terminal-dot bg-red"></div>
