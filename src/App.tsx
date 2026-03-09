@@ -1,6 +1,66 @@
+import { useEffect } from 'react'
 import './App.css'
 
 function App() {
+  useEffect(() => {
+    // Mobile tooltip handler - show title on tap
+    const handleCellTap = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      
+      // Check if it's a tooltip cell
+      if (target.classList.contains('cursor-help') && target.hasAttribute('title')) {
+        const title = target.getAttribute('title')
+        if (!title) return
+        
+        // Remove any existing tooltip
+        document.querySelectorAll('.mobile-tooltip').forEach(el => el.remove())
+        
+        // Create tooltip element
+        const tooltip = document.createElement('div')
+        tooltip.className = 'mobile-tooltip'
+        tooltip.textContent = title
+        
+        Object.assign(tooltip.style, {
+          position: 'fixed',
+          bottom: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          maxWidth: '90%',
+          width: 'auto',
+          padding: '12px 16px',
+          background: 'black',
+          border: '2px solid #ff0621',
+          borderRadius: '8px',
+          color: '#ebdbb2',
+          fontSize: '14px',
+          lineHeight: '1.4',
+          zIndex: '9999',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+          textAlign: 'center'
+        })
+        
+        document.body.appendChild(tooltip)
+        
+        // Remove on next tap
+        setTimeout(() => {
+          const removeTooltip = () => {
+            tooltip.remove()
+            document.removeEventListener('click', removeTooltip)
+          }
+          document.addEventListener('click', removeTooltip)
+        }, 100)
+        
+        e.stopPropagation()
+      }
+    }
+    
+    // Only on mobile (touch devices)
+    if ('ontouchstart' in window) {
+      document.addEventListener('click', handleCellTap)
+      return () => document.removeEventListener('click', handleCellTap)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-terminal-bg">
       {/* Header */}
@@ -152,7 +212,7 @@ function App() {
                   <td className="px-4 py-3 cursor-help" title="No protection - KMS signs whatever the agent requests via API">❌</td>
                   <td className="px-4 py-3 cursor-help" title="No protection - agent controls wallet directly with no spending limits">❌</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - CDP validates per-transaction but enforcement is off-chain and opaque">⚠️</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - triple enforcement: off-chain registry check + onchain Call Policy + cumulative spending cap">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - onchain Call Policy and spending caps enforce restrictions regardless of prompt. Agent-level checks can be bypassed, but contract-level enforcement cannot.">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Indirect Prompt Injection</td>
@@ -222,10 +282,8 @@ function App() {
                   <td className="px-4 py-3">Chain Support</td>
                   <td className="px-4 py-3">Any EVM</td>
                   <td className="px-4 py-3">Any EVM</td>
-                  <td className="px-4 py-3">Any EVM</td>
                   <td className="px-4 py-3">Multi-chain</td>
                   <td className="px-4 py-3">Base + ETH</td>
-                  <td className="px-4 py-3">Any EVM</td>
                   <td className="px-4 py-3 text-green font-bold">Any EVM</td>
                 </tr>
               </tbody>
