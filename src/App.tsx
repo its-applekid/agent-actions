@@ -214,7 +214,7 @@ Bot
                   <td className="px-4 py-3">❌</td>
                   <td className="px-4 py-3 text-green">✅</td>
                   <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-yellow font-bold">⚠️</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Autonomous Exploitation</td>
@@ -382,9 +382,10 @@ Bot
             
             <div className="terminal-window">
               <div className="p-6">
-                <h4 className="text-lg font-mono text-aqua mb-3">Session Keys</h4>
+                <h4 className="text-lg font-mono text-aqua mb-3">Session Keys + Pluggable Storage</h4>
                 <p className="text-terminal-text text-sm leading-relaxed mb-3">
                   Bot gets ephemeral key with scoped permissions. User's EOA retains full control.
+                  Key storage is configurable: local keychain, AWS KMS, HSM, or custom signer.
                 </p>
                 <p className="text-terminal-muted text-xs">Revoke access instantly from dashboard.</p>
               </div>
