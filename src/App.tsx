@@ -35,7 +35,7 @@ function App() {
             Safe DeFi for AI agents
           </h2>
           <p className="text-xl text-terminal-text mb-8 leading-relaxed">
-            On-chain spending limits, session keys, and smart contract enforcement.
+            Onchain spending limits, session keys, and smart contract enforcement.
             <br />
             Even a compromised agent can't drain your wallet.
           </p>
@@ -100,7 +100,7 @@ function App() {
             </div>
             <div className="terminal-window">
               <div className="p-6">
-                <h4 className="text-lg font-mono text-aqua mb-3">On-Chain Limits</h4>
+                <h4 className="text-lg font-mono text-aqua mb-3">Onchain Limits</h4>
                 <p className="text-terminal-text text-sm leading-relaxed">
                   Custom Solidity spending cap policy tracks cumulative per-token spending.
                   Enforced at validation time.
@@ -139,7 +139,7 @@ function App() {
   ↓
   ZeroDev SDK
   ↓
-  Kernel Account (on-chain)
+  Kernel Account (onchain)
     ├── ECDSA Validator (sudo = user)
     ├── Permission Validator (regular = bot)
     │   ├── Call Policy
@@ -254,7 +254,7 @@ Bot
                   <td className="px-4 py-3">Config</td>
                   <td className="px-4 py-3">CDP</td>
                   <td className="px-4 py-3 text-green">Contract</td>
-                  <td className="px-4 py-3 text-green font-bold">On-chain</td>
+                  <td className="px-4 py-3 text-green font-bold">Onchain</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3">Cost of Breach</td>
@@ -374,7 +374,7 @@ Bot
                 <h4 className="text-lg font-mono text-yellow mb-3">Curated DeFi Registry</h4>
                 <p className="text-terminal-text text-sm leading-relaxed mb-3">
                   Pre-vetted catalog of safe protocols. User opts in via dashboard.
-                  On-chain Call Policy enforces.
+                  Onchain Call Policy enforces.
                 </p>
                 <p className="text-terminal-muted text-xs">Starting with Uniswap, expanding to Morpho, Polymarket, Aave.</p>
               </div>
@@ -395,9 +395,9 @@ Bot
               <div className="p-6">
                 <h4 className="text-lg font-mono text-purple mb-3">Defense-in-Depth</h4>
                 <p className="text-terminal-text text-sm leading-relaxed mb-3">
-                  Three layers: off-chain registry check, on-chain Call Policy, on-chain Spending Cap.
+                  Three layers: off-chain registry check, onchain Call Policy, onchain Spending Cap.
                 </p>
-                <p className="text-terminal-muted text-xs">Even fully compromised bot cannot bypass on-chain limits.</p>
+                <p className="text-terminal-muted text-xs">Even fully compromised bot cannot bypass onchain limits.</p>
               </div>
             </div>
           </div>
