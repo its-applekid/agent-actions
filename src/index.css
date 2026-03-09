@@ -1,16 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-950 text-gray-100;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  * {
+    @apply border-terminal-border;
+  }
+  
+  body {
+    @apply bg-terminal-bg text-terminal-text font-mono;
+    @apply m-0 p-0;
+    @apply selection:bg-terminal-muted selection:text-terminal-bg;
+  }
+
+  html,
+  body,
+  #root {
+    @apply w-full min-h-full;
+  }
+
+  /* Disable ligatures in code blocks */
+  pre,
+  code {
+    font-variant-ligatures: none;
+    font-feature-settings: 'liga' 0, 'calt' 0;
+  }
 }
 
-code {
-  font-family: 'Courier New', monospace;
+@layer utilities {
+  .terminal-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .terminal-window {
+    @apply bg-terminal-code rounded-lg border border-terminal-border;
+  }
+  
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-3 border-b border-terminal-border;
+  }
+  
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
 }

@@ -2,26 +2,23 @@ import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-950">
-      {/* Hero */}
-      <header className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-5xl font-bold mb-4">
-            <span className="text-optimism-red">Agent Actions</span>
+    <div className="min-h-screen bg-terminal-bg">
+      {/* Header */}
+      <header className="border-b border-terminal-border">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+          <h1 className="text-2xl font-display text-red terminal-glow">
+            AGENT_ACTIONS
           </h1>
-          <p className="text-2xl text-gray-300 mb-8 max-w-3xl">
-            Safe DeFi for AI agents. On-chain spending limits, session keys, and smart contract enforcement.
-          </p>
-          <div className="flex gap-4">
+          <div className="flex gap-6">
             <a
               href="#comparison"
-              className="px-6 py-3 bg-optimism-red text-white rounded-lg font-medium hover:bg-red-600 transition-colors"
+              className="text-terminal-text hover:text-red transition-colors"
             >
-              See Comparison
+              Security
             </a>
             <a
               href="https://github.com/its-applekid/agent-actions"
-              className="px-6 py-3 border border-gray-700 text-gray-300 rounded-lg font-medium hover:border-optimism-red hover:text-optimism-red transition-colors"
+              className="text-terminal-text hover:text-red transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -31,307 +28,392 @@ function App() {
         </div>
       </header>
 
-      {/* Problem */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold mb-6 text-optimism-red">The Problem</h2>
-        <div className="prose prose-invert max-w-none">
-          <p className="text-xl text-gray-300 mb-4">
-            Every AI agent DeFi SDK fires transactions without safety guardrails. 
-            No solution provides on-chain spending limits, transaction simulation, or user-controlled permissions.
+      {/* Hero */}
+      <main className="max-w-7xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-5xl font-display mb-6 text-terminal-cream">
+            Safe DeFi for AI agents
+          </h2>
+          <p className="text-xl text-terminal-text mb-8 leading-relaxed">
+            On-chain spending limits, session keys, and smart contract enforcement.
+            <br />
+            Even a compromised agent can't drain your wallet.
           </p>
-          <p className="text-xl text-gray-300">
-            A prompt-injected agent with signing authority could drain a wallet. 
-            The defense must be a <strong className="text-white">hard on-chain limit</strong> the agent cannot bypass.
-          </p>
+          <div className="flex gap-4">
+            <a
+              href="#comparison"
+              className="px-6 py-3 bg-red text-terminal-bg font-mono font-medium hover:opacity-90 transition-opacity"
+            >
+              See Comparison →
+            </a>
+            <a
+              href="https://github.com/its-applekid/agent-actions"
+              className="px-6 py-3 border border-terminal-border text-terminal-text hover:border-red hover:text-red transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
-      </section>
 
-      {/* Solution */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-6 text-optimism-red">The Solution</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">ZeroDev Kernel</h3>
-            <p className="text-gray-400">
-              Smart contract wallet with session keys. Your EOA owns the account, bot gets scoped permissions.
-            </p>
+        {/* Problem */}
+        <section className="max-w-4xl mx-auto mb-24">
+          <div className="terminal-window">
+            <div className="terminal-header">
+              <div className="terminal-dot bg-red"></div>
+              <div className="terminal-dot bg-yellow"></div>
+              <div className="terminal-dot bg-green"></div>
+              <span className="ml-2 text-sm text-terminal-muted">problem.txt</span>
+            </div>
+            <div className="p-6">
+              <p className="text-terminal-text mb-4">
+                <span className="text-red">$</span> AI agents with wallet access keep getting hacked:
+              </p>
+              <ul className="list-none space-y-2 pl-4 text-terminal-text">
+                <li><span className="text-yellow">•</span> Lobstar Wilde: $450K to random reply guy</li>
+                <li><span className="text-yellow">•</span> AIXBT: $106K via dashboard compromise</li>
+                <li><span className="text-yellow">•</span> Freysa: $47K prompt injection</li>
+                <li><span className="text-yellow">•</span> 2025 total crypto theft: $3.4B</li>
+              </ul>
+              <p className="text-terminal-muted mt-6 text-sm italic">
+                OpenAI: "Prompt injection is a frontier security challenge that may never be fully solved"
+              </p>
+            </div>
           </div>
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">On-Chain Limits</h3>
-            <p className="text-gray-400">
-              Custom Solidity spending cap policy tracks cumulative per-token spending. Enforced at validation time.
-            </p>
-          </div>
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">Web Dashboard</h3>
-            <p className="text-gray-400">
-              Configure limits, enable protocols, revoke access. Bot is read-only on its permissions.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Architecture */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-6 text-optimism-red">Architecture</h2>
-        <div className="bg-gray-900 p-8 rounded-lg border border-gray-800">
-          <div className="space-y-4 font-mono text-sm text-gray-300">
-            <div>User (EOA) → Dashboard → ZeroDev SDK → Kernel Account (on-chain)</div>
-            <div className="pl-8">├── ECDSA Validator (sudo = user)</div>
-            <div className="pl-8">├── Permission Validator (regular = bot)</div>
-            <div className="pl-16">│   ├── Call Policy</div>
-            <div className="pl-16">│   └── SpendingCapPolicy</div>
-            <div className="pl-8">└── Session Key (bot's address)</div>
-            <div className="mt-4">Bot → MCP Server → ZeroDev SDK → Kernel Account → Uniswap</div>
+        {/* Solution */}
+        <section className="max-w-4xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            THE_SOLUTION
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-yellow mb-3">ZeroDev Kernel</h4>
+                <p className="text-terminal-text text-sm leading-relaxed">
+                  Smart contract wallet with session keys. Your EOA owns the account,
+                  bot gets scoped permissions.
+                </p>
+              </div>
+            </div>
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-aqua mb-3">On-Chain Limits</h4>
+                <p className="text-terminal-text text-sm leading-relaxed">
+                  Custom Solidity spending cap policy tracks cumulative per-token spending.
+                  Enforced at validation time.
+                </p>
+              </div>
+            </div>
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-purple mb-3">Web Dashboard</h4>
+                <p className="text-terminal-text text-sm leading-relaxed">
+                  Configure limits, enable protocols, revoke access. Bot is read-only
+                  on its permissions.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Comparison Table */}
-      <section id="comparison" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-8 text-optimism-red">Security Comparison</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm border border-gray-800">
-            <thead className="bg-gray-900">
-              <tr>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">Attack Vector</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">.env File</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">AWS Secrets</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">AWS KMS</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">GOAT SDK</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">Coinbase AgentKit</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">Generic Smart Contract</th>
-                <th className="px-4 py-3 text-left font-medium text-optimism-red border-b border-gray-800">Agent Actions</th>
-              </tr>
-            </thead>
-            <tbody className="text-gray-300">
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Direct Prompt Injection</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">⚠️ Partial</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Protected</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Indirect Prompt Injection</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">⚠️ Partial</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Protected</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Private Key Exfiltration</td>
-                <td className="px-4 py-3">🔴 Critical</td>
-                <td className="px-4 py-3">❌ Critical</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3">❌ Critical</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3 font-bold text-yellow-400">⚠️ Partial</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Malicious Skill Installation</td>
-                <td className="px-4 py-3">🔴 Critical</td>
-                <td className="px-4 py-3">❌ Critical</td>
-                <td className="px-4 py-3">⚠️</td>
-                <td className="px-4 py-3">❌ Critical</td>
-                <td className="px-4 py-3">⚠️</td>
-                <td className="px-4 py-3">⚠️</td>
-                <td className="px-4 py-3 font-bold text-yellow-400">⚠️ Partial</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Autonomous Exploitation</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">⚠️ Partial</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Protected</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Agent Self-Modification</td>
-                <td className="px-4 py-3">🔴 Critical</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">⚠️</td>
-                <td className="px-4 py-3">❌</td>
-                <td className="px-4 py-3">⚠️</td>
-                <td className="px-4 py-3">✅</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Protected</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Custodial Provider Compromise</td>
-                <td className="px-4 py-3">N/A</td>
-                <td className="px-4 py-3">N/A</td>
-                <td className="px-4 py-3">N/A</td>
-                <td className="px-4 py-3">N/A</td>
-                <td className="px-4 py-3">🔴 Critical</td>
-                <td className="px-4 py-3">N/A</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Self-Custody</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Key Exposure Surface</td>
-                <td className="px-4 py-3">🔴 Plaintext</td>
-                <td className="px-4 py-3">❌ Plaintext</td>
-                <td className="px-4 py-3 text-green-400">✅ Never exposed</td>
-                <td className="px-4 py-3">❌ In-memory</td>
-                <td className="px-4 py-3 text-green-400">✅ TEE</td>
-                <td className="px-4 py-3 text-green-400">✅ Contract</td>
-                <td className="px-4 py-3 font-bold text-yellow-400">⚠️ Session key local</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Guardrail Enforcement</td>
-                <td className="px-4 py-3">❌ Config</td>
-                <td className="px-4 py-3">❌ MCP</td>
-                <td className="px-4 py-3">⚠️ IAM</td>
-                <td className="px-4 py-3">❌ Config</td>
-                <td className="px-4 py-3">⚠️ CDP</td>
-                <td className="px-4 py-3 text-green-400">✅ Contract</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ On-chain</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Cost of Breach</td>
-                <td className="px-4 py-3">🔴 Total loss</td>
-                <td className="px-4 py-3">🔴 Total loss</td>
-                <td className="px-4 py-3">🟡 IAM-limited</td>
-                <td className="px-4 py-3">🔴 Total loss</td>
-                <td className="px-4 py-3">🟢 Cap-limited</td>
-                <td className="px-4 py-3">🟢 Policy-limited</td>
-                <td className="px-4 py-3 font-bold text-green-400">🟢 Cap-limited</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+        {/* Architecture */}
+        <section className="max-w-4xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            ARCHITECTURE
+          </h3>
+          <div className="terminal-window">
+            <div className="terminal-header">
+              <div className="terminal-dot bg-red"></div>
+              <div className="terminal-dot bg-yellow"></div>
+              <div className="terminal-dot bg-green"></div>
+              <span className="ml-2 text-sm text-terminal-muted">architecture.txt</span>
+            </div>
+            <div className="p-6 font-mono text-sm">
+              <pre className="text-terminal-text leading-relaxed">
+{`User (EOA)
+  ↓
+  Dashboard
+  ↓
+  ZeroDev SDK
+  ↓
+  Kernel Account (on-chain)
+    ├── ECDSA Validator (sudo = user)
+    ├── Permission Validator (regular = bot)
+    │   ├── Call Policy
+    │   └── SpendingCapPolicy
+    └── Session Key (bot's address)
 
-      {/* Operational Comparison */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-8 text-optimism-red">Operational Capabilities</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm border border-gray-800">
-            <thead className="bg-gray-900">
-              <tr>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">Feature</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">.env</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">AWS Secrets</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">AWS KMS</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">GOAT</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">AgentKit</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-300 border-b border-gray-800">Generic SC</th>
-                <th className="px-4 py-3 text-left font-medium text-optimism-red border-b border-gray-800">Agent Actions</th>
-              </tr>
-            </thead>
-            <tbody className="text-gray-300">
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">DeFi Protocol Access</td>
-                <td className="px-4 py-3">If built</td>
-                <td className="px-4 py-3">If built</td>
-                <td className="px-4 py-3">If built</td>
-                <td className="px-4 py-3 text-green-400">✅ 200+</td>
-                <td className="px-4 py-3">~5</td>
-                <td className="px-4 py-3">If built</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Registry</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Setup Cost</td>
-                <td className="px-4 py-3">Free</td>
-                <td className="px-4 py-3">Free</td>
-                <td className="px-4 py-3">$20-100</td>
-                <td className="px-4 py-3">Free</td>
-                <td className="px-4 py-3">Free</td>
-                <td className="px-4 py-3">$20-100</td>
-                <td className="px-4 py-3 font-bold">~$20-50</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Custodial Risk</td>
-                <td className="px-4 py-3 text-green-400">✅ Self</td>
-                <td className="px-4 py-3 text-green-400">✅ Self</td>
-                <td className="px-4 py-3 text-green-400">✅ Self</td>
-                <td className="px-4 py-3 text-green-400">✅ Self</td>
-                <td className="px-4 py-3 text-red-400">🔴 Custodial</td>
-                <td className="px-4 py-3 text-green-400">✅ Self</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Self-Custody</td>
-              </tr>
-              <tr className="border-b border-gray-800 bg-gray-900/50">
-                <td className="px-4 py-3 font-medium">Vendor Lock-In</td>
-                <td className="px-4 py-3">None</td>
-                <td className="px-4 py-3">⚠️ AWS</td>
-                <td className="px-4 py-3">⚠️ AWS</td>
-                <td className="px-4 py-3">None</td>
-                <td className="px-4 py-3 text-red-400">🔴 High</td>
-                <td className="px-4 py-3">None</td>
-                <td className="px-4 py-3 font-bold text-green-400">None</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="px-4 py-3 font-medium">Chain Support</td>
-                <td className="px-4 py-3">Any EVM</td>
-                <td className="px-4 py-3">Any EVM</td>
-                <td className="px-4 py-3">Any EVM</td>
-                <td className="px-4 py-3">30+ chains</td>
-                <td className="px-4 py-3">Base + ETH</td>
-                <td className="px-4 py-3">Any EVM</td>
-                <td className="px-4 py-3 font-bold text-green-400">✅ Any EVM</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+Bot
+  ↓
+  MCP Server
+  ↓
+  ZeroDev SDK
+  ↓
+  Kernel Account
+  ↓
+  Uniswap`}
+              </pre>
+            </div>
+          </div>
+        </section>
 
-      {/* Features */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-8 text-optimism-red">Unique Features</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">Composable Spending Caps</h3>
-            <p className="text-gray-400 mb-3">
-              Four modes that can be combined: USD cap (Chainlink), per-token amount cap, asset allowlist, unrestricted.
-            </p>
-            <p className="text-sm text-gray-500">Most restrictive rule wins.</p>
+        {/* Comparison Table */}
+        <section id="comparison" className="max-w-7xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            SECURITY_COMPARISON
+          </h3>
+          <div className="terminal-window overflow-x-auto">
+            <div className="terminal-header">
+              <div className="terminal-dot bg-red"></div>
+              <div className="terminal-dot bg-yellow"></div>
+              <div className="terminal-dot bg-green"></div>
+              <span className="ml-2 text-sm text-terminal-muted">comparison.csv</span>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-terminal-border">
+                  <th className="px-4 py-3 text-left font-mono text-terminal-cream">Attack Vector</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">.env</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AWS Secrets</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AWS KMS</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">GOAT</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AgentKit</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">Generic SC</th>
+                  <th className="px-4 py-3 text-left font-mono text-red">Agent Actions</th>
+                </tr>
+              </thead>
+              <tbody className="text-terminal-text">
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Direct Prompt Injection</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-yellow">⚠️</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Indirect Prompt Injection</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-yellow">⚠️</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Private Key Exfiltration</td>
+                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-yellow font-bold">⚠️</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Autonomous Exploitation</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-yellow">⚠️</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Agent Self-Modification</td>
+                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-yellow">⚠️</td>
+                  <td className="px-4 py-3">❌</td>
+                  <td className="px-4 py-3 text-yellow">⚠️</td>
+                  <td className="px-4 py-3 text-green">✅</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Custodial Provider Compromise</td>
+                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
+                  <td className="px-4 py-3 text-red">🔴</td>
+                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
+                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Guardrail Enforcement</td>
+                  <td className="px-4 py-3">Config</td>
+                  <td className="px-4 py-3">MCP</td>
+                  <td className="px-4 py-3">IAM</td>
+                  <td className="px-4 py-3">Config</td>
+                  <td className="px-4 py-3">CDP</td>
+                  <td className="px-4 py-3 text-green">Contract</td>
+                  <td className="px-4 py-3 text-green font-bold">On-chain</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3">Cost of Breach</td>
+                  <td className="px-4 py-3 text-red">Total loss</td>
+                  <td className="px-4 py-3 text-red">Total loss</td>
+                  <td className="px-4 py-3 text-yellow">IAM-limited</td>
+                  <td className="px-4 py-3 text-red">Total loss</td>
+                  <td className="px-4 py-3 text-green">Cap-limited</td>
+                  <td className="px-4 py-3 text-green">Policy-limited</td>
+                  <td className="px-4 py-3 text-green font-bold">Cap-limited</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">Curated DeFi Registry</h3>
-            <p className="text-gray-400 mb-3">
-              Pre-vetted catalog of safe protocols. User opts in via dashboard. On-chain Call Policy enforces.
-            </p>
-            <p className="text-sm text-gray-500">Starting with Uniswap, expanding to Morpho, Polymarket, Aave.</p>
+        </section>
+
+        {/* Operational */}
+        <section className="max-w-7xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            OPERATIONAL_CAPABILITIES
+          </h3>
+          <div className="terminal-window overflow-x-auto">
+            <div className="terminal-header">
+              <div className="terminal-dot bg-red"></div>
+              <div className="terminal-dot bg-yellow"></div>
+              <div className="terminal-dot bg-green"></div>
+              <span className="ml-2 text-sm text-terminal-muted">capabilities.csv</span>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-terminal-border">
+                  <th className="px-4 py-3 text-left font-mono text-terminal-cream">Feature</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">.env</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AWS Secrets</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AWS KMS</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">GOAT</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">AgentKit</th>
+                  <th className="px-4 py-3 text-left font-mono text-terminal-muted">Generic SC</th>
+                  <th className="px-4 py-3 text-left font-mono text-red">Agent Actions</th>
+                </tr>
+              </thead>
+              <tbody className="text-terminal-text">
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">DeFi Protocol Access</td>
+                  <td className="px-4 py-3 text-terminal-muted">If built</td>
+                  <td className="px-4 py-3 text-terminal-muted">If built</td>
+                  <td className="px-4 py-3 text-terminal-muted">If built</td>
+                  <td className="px-4 py-3 text-green">200+</td>
+                  <td className="px-4 py-3">~5</td>
+                  <td className="px-4 py-3 text-terminal-muted">If built</td>
+                  <td className="px-4 py-3 text-green font-bold">Registry</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Setup Cost</td>
+                  <td className="px-4 py-3">Free</td>
+                  <td className="px-4 py-3">Free</td>
+                  <td className="px-4 py-3">$20-100</td>
+                  <td className="px-4 py-3">Free</td>
+                  <td className="px-4 py-3">Free</td>
+                  <td className="px-4 py-3">$20-100</td>
+                  <td className="px-4 py-3 font-bold">~$20-50</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Custodial Risk</td>
+                  <td className="px-4 py-3 text-green">Self</td>
+                  <td className="px-4 py-3 text-green">Self</td>
+                  <td className="px-4 py-3 text-green">Self</td>
+                  <td className="px-4 py-3 text-green">Self</td>
+                  <td className="px-4 py-3 text-red">Custodial</td>
+                  <td className="px-4 py-3 text-green">Self</td>
+                  <td className="px-4 py-3 text-green font-bold">Self-Custody</td>
+                </tr>
+                <tr className="border-b border-terminal-border/50">
+                  <td className="px-4 py-3">Vendor Lock-In</td>
+                  <td className="px-4 py-3">None</td>
+                  <td className="px-4 py-3 text-yellow">AWS</td>
+                  <td className="px-4 py-3 text-yellow">AWS</td>
+                  <td className="px-4 py-3">None</td>
+                  <td className="px-4 py-3 text-red">High</td>
+                  <td className="px-4 py-3">None</td>
+                  <td className="px-4 py-3 text-green font-bold">None</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3">Chain Support</td>
+                  <td className="px-4 py-3">Any EVM</td>
+                  <td className="px-4 py-3">Any EVM</td>
+                  <td className="px-4 py-3">Any EVM</td>
+                  <td className="px-4 py-3">30+ chains</td>
+                  <td className="px-4 py-3">Base + ETH</td>
+                  <td className="px-4 py-3">Any EVM</td>
+                  <td className="px-4 py-3 text-green font-bold">Any EVM</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">Session Keys</h3>
-            <p className="text-gray-400 mb-3">
-              Bot gets ephemeral key with scoped permissions. User's EOA retains full control.
-            </p>
-            <p className="text-sm text-gray-500">Revoke access instantly from dashboard.</p>
+        </section>
+
+        {/* Features */}
+        <section className="max-w-4xl mx-auto mb-24">
+          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
+            UNIQUE_FEATURES
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-red mb-3">Composable Spending Caps</h4>
+                <p className="text-terminal-text text-sm leading-relaxed mb-3">
+                  Four modes that can be combined: USD cap (Chainlink), per-token amount cap,
+                  asset allowlist, unrestricted.
+                </p>
+                <p className="text-terminal-muted text-xs">Most restrictive rule wins.</p>
+              </div>
+            </div>
+            
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-yellow mb-3">Curated DeFi Registry</h4>
+                <p className="text-terminal-text text-sm leading-relaxed mb-3">
+                  Pre-vetted catalog of safe protocols. User opts in via dashboard.
+                  On-chain Call Policy enforces.
+                </p>
+                <p className="text-terminal-muted text-xs">Starting with Uniswap, expanding to Morpho, Polymarket, Aave.</p>
+              </div>
+            </div>
+            
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-aqua mb-3">Session Keys</h4>
+                <p className="text-terminal-text text-sm leading-relaxed mb-3">
+                  Bot gets ephemeral key with scoped permissions. User's EOA retains full control.
+                </p>
+                <p className="text-terminal-muted text-xs">Revoke access instantly from dashboard.</p>
+              </div>
+            </div>
+            
+            <div className="terminal-window">
+              <div className="p-6">
+                <h4 className="text-lg font-mono text-purple mb-3">Defense-in-Depth</h4>
+                <p className="text-terminal-text text-sm leading-relaxed mb-3">
+                  Three layers: off-chain registry check, on-chain Call Policy, on-chain Spending Cap.
+                </p>
+                <p className="text-terminal-muted text-xs">Even fully compromised bot cannot bypass on-chain limits.</p>
+              </div>
+            </div>
           </div>
-          
-          <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
-            <h3 className="text-xl font-bold mb-3 text-white">Defense-in-Depth</h3>
-            <p className="text-gray-400 mb-3">
-              Three layers: off-chain registry check, on-chain Call Policy, on-chain Spending Cap.
-            </p>
-            <p className="text-sm text-gray-500">Even fully compromised bot cannot bypass on-chain limits.</p>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex justify-between items-center">
-            <p className="text-gray-400">
-              Built on <span className="text-optimism-red font-medium">Optimism</span>
+      <footer className="border-t border-terminal-border mt-24">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex justify-between items-center text-sm">
+            <p className="text-terminal-muted">
+              Built on <span className="text-red">Optimism</span>
             </p>
             <div className="flex gap-6">
               <a
                 href="https://github.com/its-applekid/agent-actions"
-                className="text-gray-400 hover:text-optimism-red transition-colors"
+                className="text-terminal-muted hover:text-red transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -339,7 +421,7 @@ function App() {
               </a>
               <a
                 href="https://docs.zerodev.app/"
-                className="text-gray-400 hover:text-optimism-red transition-colors"
+                className="text-terminal-muted hover:text-red transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
