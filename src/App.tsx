@@ -91,7 +91,7 @@ function App() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="terminal-window">
               <div className="p-6">
-                <h4 className="text-lg font-mono text-yellow mb-3">ZeroDev Kernel</h4>
+                <h4 className="text-lg font-mono text-yellow mb-3">Smart Account</h4>
                 <p className="text-terminal-text text-sm leading-relaxed">
                   Smart contract wallet with session keys. Your EOA owns the account,
                   bot gets scoped permissions.
@@ -139,7 +139,7 @@ function App() {
   ↓
   ZeroDev SDK
   ↓
-  Kernel Account (onchain)
+  Smart Account (onchain)
     ├── ECDSA Validator (sudo = user)
     ├── Permission Validator (regular = bot)
     │   ├── Call Policy
@@ -152,7 +152,7 @@ Bot
   ↓
   ZeroDev SDK
   ↓
-  Kernel Account
+  Smart Account
   ↓
   Uniswap`}
               </pre>
