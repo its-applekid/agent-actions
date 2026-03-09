@@ -1,1 +1,25 @@
 /* App styles handled by Tailwind */
+
+/* Interactive tooltip cells */
+.cursor-help {
+  cursor: help;
+  text-decoration: underline dotted;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 3px;
+  transition: all 0.2s;
+}
+
+.cursor-help:hover {
+  text-decoration-color: rgba(255, 6, 33, 0.8);
+  text-decoration-style: solid;
+}
+
+/* Mobile: add info icon indicator */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-help::after {
+    content: " ⓘ";
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-left: 2px;
+  }
+}
