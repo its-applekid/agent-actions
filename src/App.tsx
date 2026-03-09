@@ -239,15 +239,15 @@ function App() {
                   <td className="px-4 py-3">Private Key Exfiltration</td>
                   <td className="px-4 py-3 text-red cursor-help" title="Critical risk - plaintext file readable by any process or malicious npm package">❌</td>
                   <td className="px-4 py-3 text-green cursor-help" title="Protected - private key never leaves Hardware Security Module, signing is remote">✅</td>
-                  <td className="px-4 py-3 cursor-help" title="Critical risk - private key stored in memory, extractable by malicious code">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="Critical risk - private key accessible in process memory with no additional isolation or protection">❌</td>
                   <td className="px-4 py-3 text-green cursor-help" title="Protected - key in TEE (Trusted Execution Environment), hardware-isolated from agent process">✅</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - pluggable key storage (local keychain, AWS KMS, HSM, TEE); session key has limited scope even if stolen">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - session key has limited scope; if stolen, attacker is restricted to permissions defined in Call Policy and spending caps">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Autonomous Exploitation</td>
                   <td className="px-4 py-3 cursor-help" title="No protection - agent can interact with any smart contract including malicious ones">❌</td>
                   <td className="px-4 py-3 cursor-help" title="No protection - KMS signs any valid transaction regardless of destination">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - access to 200+ DeFi protocols with zero restrictions">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - access to 60+ integrated protocols and services with zero restrictions">❌</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial - limited to ~5 CDP-approved protocols, reducing attack surface">⚠️</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - curated DeFi registry + onchain Call Policy enforce protocol allowlist">✅</td>
                 </tr>
@@ -256,15 +256,15 @@ function App() {
                   <td className="px-4 py-3 text-red cursor-help" title="Critical risk - agent can edit config file to remove all spending limits and guardrails">❌</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - IAM policy limits permission changes, but IAM itself could be compromised">⚠️</td>
                   <td className="px-4 py-3 cursor-help" title="Vulnerable - agent can edit configuration to remove all guardrails and allowlists">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy is external to agent, but Coinbase controls the policy centrally">⚠️</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - dashboard-only management, bot's session key has read-only permissions, cannot change policy">✅</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy framework is external to agent; developers configure policies via CDP API">⚠️</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - bot's session key has restricted permissions and cannot modify its own policy; owner's sudo key controls policy changes">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Custodial Provider Compromise</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user controls private key directly">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys in user's AWS HSM">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, no third-party custodian">N/A</td>
-                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - Coinbase infrastructure breach would affect all custodial wallets simultaneously">❌</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys secured in TEE (Trusted Execution Environment)">N/A</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - self-custody, user's EOA owns smart account, Optimism has no custody or access">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
