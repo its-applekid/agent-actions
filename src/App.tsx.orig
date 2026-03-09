@@ -256,7 +256,7 @@ function App() {
                   <td className="px-4 py-3 text-red cursor-help" title="Critical risk - agent can edit config file to remove all spending limits and guardrails">❌</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - IAM policy limits permission changes, but IAM itself could be compromised">⚠️</td>
                   <td className="px-4 py-3 cursor-help" title="Vulnerable - agent can edit configuration to remove all guardrails and allowlists">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy framework is external to agent BUT Coinbase controls what policies are available; users cannot configure their own spending limits">⚠️</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy framework is external to agent; developers configure policies via CDP API">⚠️</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - bot's session key has restricted permissions and cannot modify its own policy; owner's sudo key controls policy changes">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
@@ -264,7 +264,7 @@ function App() {
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user controls private key directly">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys in user's AWS HSM">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, no third-party custodian">N/A</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Policy control - Coinbase decides what the bot can do, not the user; provider controls spending limits and protocol access centrally">⚠️</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Service dependency - provider can revoke account access at any time; user cannot access funds without Coinbase infrastructure">⚠️</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="True self-custody - user's EOA owns smart account onchain; no middleman, works independently of any service provider">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
@@ -272,7 +272,7 @@ function App() {
                   <td className="px-4 py-3 cursor-help" title="Config file - agent can modify to remove limits, no external enforcement">Config</td>
                   <td className="px-4 py-3 cursor-help" title="IAM policy enforces - external to agent but requires deep AWS expertise to configure properly">IAM</td>
                   <td className="px-4 py-3 cursor-help" title="Config file - no enforcement mechanism, purely developer responsibility">Config</td>
-                  <td className="px-4 py-3 cursor-help" title="CDP enforces centrally-controlled policy; Coinbase decides limits, not users; can block transactions">CDP</td>
+                  <td className="px-4 py-3 cursor-help" title="CDP policy enforces spending caps; Coinbase can block transactions; service dependency risk">CDP</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="Onchain enforcement - user-owned smart account with Call Policy + spending caps; works independently of any service provider">Onchain</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
