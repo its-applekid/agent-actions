@@ -220,20 +220,12 @@ function App() {
               </thead>
               <tbody className="text-terminal-text">
 <tr className="border-b border-terminal-border/50">
-                  <td className="px-4 py-3">Direct Prompt Injection</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - agent has full signing authority with zero guardrails">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs whatever the agent requests via API">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - agent controls wallet directly with no spending limits">❌</td>
+                  <td className="px-4 py-3">Prompt Injection</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent has full signing authority with zero guardrails against malicious instructions">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs whatever the agent requests via API, regardless of prompt source">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent controls wallet directly with no spending limits or prompt filtering">❌</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial - spending caps limit damage but agent can still be manipulated within allowed permissions">⚠️</td>
                   <td className="px-4 py-3 text-yellow cursor-help" title="Partial - onchain spending caps limit damage but agent can still be manipulated within allowed permissions; similar attack surface to AgentKit">⚠️</td>
-                </tr>
-<tr className="border-b border-terminal-border/50">
-                  <td className="px-4 py-3">Indirect Prompt Injection</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - malicious website content can manipulate agent to drain funds">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - KMS provides key security but no transaction filtering">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - no guardrails against malicious prompts from external sources">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - spending caps and policy checks but can't distinguish legitimate vs malicious intent">⚠️</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - onchain policy and spending caps but can't distinguish legitimate vs malicious intent; similar attack surface to AgentKit">⚠️</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Private Key Exfiltration</td>
