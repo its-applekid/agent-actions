@@ -15,6 +15,16 @@ function App() {
         // Remove any existing tooltip
         document.querySelectorAll('.mobile-tooltip').forEach(el => el.remove())
         
+        // Determine border color based on cell color class
+        let borderColor = '#ff0621' // default red
+        if (target.classList.contains('text-green')) {
+          borderColor = '#98971a' // green
+        } else if (target.classList.contains('text-yellow')) {
+          borderColor = '#d79921' // yellow
+        } else if (target.classList.contains('text-red')) {
+          borderColor = '#ff0621' // red
+        }
+        
         // Create tooltip element
         const tooltip = document.createElement('div')
         tooltip.className = 'mobile-tooltip'
@@ -29,7 +39,7 @@ function App() {
           width: 'auto',
           padding: '12px 16px',
           background: 'black',
-          border: '2px solid #ff0621',
+          border: `2px solid ${borderColor}`,
           borderRadius: '8px',
           color: '#ebdbb2',
           fontSize: '14px',

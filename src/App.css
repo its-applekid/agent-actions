@@ -14,3 +14,19 @@
   text-decoration-style: solid;
 }
 
+
+/* Sticky first column on mobile for context */
+@media (max-width: 768px) {
+  table td:first-child,
+  table th:first-child {
+    position: sticky;
+    left: 0;
+    background: #282828;
+    z-index: 10;
+    border-right: 1px solid #504945;
+  }
+  
+  table th:first-child {
+    background: #1d2021;
+  }
+}
