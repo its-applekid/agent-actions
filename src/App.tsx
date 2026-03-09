@@ -119,49 +119,6 @@ function App() {
           </div>
         </section>
 
-        {/* Architecture */}
-        <section className="max-w-4xl mx-auto mb-24">
-          <h3 className="text-3xl font-display mb-8 text-terminal-cream">
-            ARCHITECTURE
-          </h3>
-          <div className="terminal-window">
-            <div className="terminal-header">
-              <div className="terminal-dot bg-red"></div>
-              <div className="terminal-dot bg-yellow"></div>
-              <div className="terminal-dot bg-green"></div>
-              <span className="ml-2 text-sm text-terminal-muted">architecture.txt</span>
-            </div>
-            <div className="p-6 font-mono text-sm">
-              <pre className="text-terminal-text leading-relaxed">
-{`User (EOA)
-  ↓
-  Dashboard
-  ↓
-  ZeroDev SDK
-  ↓
-  Smart Account (onchain)
-    ├── ECDSA Validator (sudo = user)
-    ├── Permission Validator (regular = bot)
-    │   ├── Call Policy
-    │   └── SpendingCapPolicy
-    └── Session Key (bot's address)
-
-Bot
-  ↓
-  MCP Server
-  ↓
-  ZeroDev SDK
-  ↓
-  Smart Account
-  ↓
-  Uniswap`}
-              </pre>
-            </div>
-          </div>
-        </section>
-
-        {/* Comparison Table */}
-        <section id="comparison" className="max-w-7xl mx-auto mb-24">
           <h3 className="text-3xl font-display mb-8 text-terminal-cream">
             SECURITY_COMPARISON
           </h3>
@@ -362,7 +319,7 @@ Bot
               <div className="p-6">
                 <h4 className="text-lg font-mono text-red mb-3">Composable Spending Caps</h4>
                 <p className="text-terminal-text text-sm leading-relaxed mb-3">
-                  Four modes that can be combined: USD cap (Chainlink), per-token amount cap,
+                  Four modes that can be combined: USD cap, per-token amount cap,
                   asset allowlist, unrestricted.
                 </p>
                 <p className="text-terminal-muted text-xs">Most restrictive rule wins.</p>
@@ -376,7 +333,7 @@ Bot
                   Pre-vetted catalog of safe protocols. User opts in via dashboard.
                   Onchain Call Policy enforces.
                 </p>
-                <p className="text-terminal-muted text-xs">Starting with Uniswap, expanding to Morpho, Polymarket, Aave.</p>
+                <p className="text-terminal-muted text-xs">Wraps <a href="https://actions.optimism.io" target="_blank" rel="noopener noreferrer" className="text-aqua hover:text-purple underline">Actions SDK</a> — Aave, Morpho, and Uniswap support on Day One.</p>
               </div>
             </div>
             
