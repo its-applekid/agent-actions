@@ -119,6 +119,8 @@ function App() {
           </div>
         </section>
 
+        {/* Comparison Table */}
+        <section id="comparison" className="max-w-7xl mx-auto mb-24">
           <h3 className="text-3xl font-display mb-8 text-terminal-cream">
             SECURITY_COMPARISON
           </h3>
