@@ -147,83 +147,83 @@ function App() {
               <tbody className="text-terminal-text">
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Direct Prompt Injection</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-yellow">⚠️</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent has full signing authority with zero guardrails">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent can sign any transaction once key is retrieved">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs whatever the agent requests via API">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent controls wallet directly with no spending limits">❌</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - CDP validates per-transaction but enforcement is off-chain and opaque">⚠️</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - onchain policy validates and blocks unauthorized transactions">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - triple enforcement: off-chain registry check + onchain Call Policy + cumulative spending cap">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Indirect Prompt Injection</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-yellow">⚠️</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - malicious website content can manipulate agent to drain funds">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent still has unrestricted signing ability">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - KMS provides key security but no transaction filtering">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - no guardrails against malicious prompts from external sources">❌</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy checks but can't distinguish legitimate vs malicious intent">⚠️</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - contract validates transaction parameters before execution">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - onchain policy enforces allowlist regardless of prompt source">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Private Key Exfiltration</td>
-                  <td className="px-4 py-3 text-red">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - plaintext file readable by any process or malicious npm package">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="Critical risk - key retrievable as plaintext via API with AWS credentials">❌</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - private key never leaves Hardware Security Module, signing is remote">✅</td>
+                  <td className="px-4 py-3 cursor-help" title="Critical risk - private key stored in memory, extractable by malicious code">❌</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - key in TEE (Trusted Execution Environment), hardware-isolated from agent process">✅</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - contract controls signing logic, private key never exposed to agent">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - pluggable key storage (local keychain, AWS KMS, HSM, TEE); session key has limited scope even if stolen">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Autonomous Exploitation</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-yellow">⚠️</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - agent can interact with any smart contract including malicious ones">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - no contract address filtering or protocol restrictions">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs any valid transaction regardless of destination">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="No protection - access to 200+ DeFi protocols with zero restrictions">❌</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - limited to ~5 CDP-approved protocols, reducing attack surface">⚠️</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - contract allowlist restricts which protocols can be called">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - curated DeFi registry + onchain Call Policy enforce protocol allowlist">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Agent Self-Modification</td>
-                  <td className="px-4 py-3 text-red">❌</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-yellow">⚠️</td>
-                  <td className="px-4 py-3">❌</td>
-                  <td className="px-4 py-3 text-yellow">⚠️</td>
-                  <td className="px-4 py-3 text-green">✅</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - agent can edit config file to remove all spending limits and guardrails">❌</td>
+                  <td className="px-4 py-3 cursor-help" title="Vulnerable - agent can modify local MCP server config to bypass restrictions">❌</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - IAM policy limits permission changes, but IAM itself could be compromised">⚠️</td>
+                  <td className="px-4 py-3 cursor-help" title="Vulnerable - agent can edit configuration to remove all guardrails and allowlists">❌</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy is external to agent, but Coinbase controls the policy centrally">⚠️</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Protected - contract permissions are owner-only, agent cannot modify onchain rules">✅</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - dashboard-only management, bot's session key has read-only permissions, cannot change policy">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Custodial Provider Compromise</td>
-                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-red">❌</td>
-                  <td className="px-4 py-3 text-terminal-muted">N/A</td>
-                  <td className="px-4 py-3 text-green font-bold">✅</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user controls private key directly">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user manages keys via AWS">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys in user's AWS HSM">N/A</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, no third-party custodian">N/A</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - Coinbase infrastructure breach would affect all custodial wallets simultaneously">❌</td>
+                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user's EOA controls contract">N/A</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - self-custody, user's EOA owns smart account, Optimism has no custody or access">✅</td>
                 </tr>
                 <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Guardrail Enforcement</td>
-                  <td className="px-4 py-3">Config</td>
-                  <td className="px-4 py-3">MCP</td>
-                  <td className="px-4 py-3">IAM</td>
-                  <td className="px-4 py-3">Config</td>
-                  <td className="px-4 py-3">CDP</td>
-                  <td className="px-4 py-3 text-green">Contract</td>
-                  <td className="px-4 py-3 text-green font-bold">Onchain</td>
+                  <td className="px-4 py-3 cursor-help" title="Config file - agent can modify to remove limits, no external enforcement">Config</td>
+                  <td className="px-4 py-3 cursor-help" title="MCP server validates - but agent can bypass or modify MCP logic">MCP</td>
+                  <td className="px-4 py-3 cursor-help" title="IAM policy enforces - external to agent but requires deep AWS expertise to configure properly">IAM</td>
+                  <td className="px-4 py-3 cursor-help" title="Config file - no enforcement mechanism, purely developer responsibility">Config</td>
+                  <td className="px-4 py-3 cursor-help" title="CDP policy - centralized, opaque, controlled by Coinbase, per-transaction only">CDP</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Smart contract - onchain, immutable once deployed, requires custom development">Contract</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Onchain enforcement - Call Policy + cumulative spending caps + signature allowlist, bot cannot bypass">Onchain</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3">Cost of Breach</td>
-                  <td className="px-4 py-3 text-red">Total loss</td>
-                  <td className="px-4 py-3 text-red">Total loss</td>
-                  <td className="px-4 py-3 text-yellow">IAM-limited</td>
-                  <td className="px-4 py-3 text-red">Total loss</td>
-                  <td className="px-4 py-3 text-green">Cap-limited</td>
-                  <td className="px-4 py-3 text-green">Policy-limited</td>
-                  <td className="px-4 py-3 text-green font-bold">Cap-limited</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Total loss - attacker gains unlimited access to entire wallet balance across all chains">Total loss</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Total loss - full wallet compromise once AWS credentials are stolen">Total loss</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="IAM-limited loss - damage depends on IAM policy scope, could still be significant">IAM-limited</td>
+                  <td className="px-4 py-3 text-red cursor-help" title="Total loss - no spending limits or per-transaction restrictions">Total loss</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Cap-limited loss - per-transaction limits reduce blast radius but cumulative drain still possible">Cap-limited</td>
+                  <td className="px-4 py-3 text-green cursor-help" title="Policy-limited loss - depends on contract implementation quality and guardrail design">Policy-limited</td>
+                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Cap-limited loss - cumulative spending caps (hourly/daily/weekly) strictly enforced onchain, minimize damage window">Cap-limited</td>
                 </tr>
               </tbody>
             </table>
