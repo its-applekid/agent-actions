@@ -260,11 +260,11 @@ function App() {
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - bot's session key has restricted permissions and cannot modify its own policy; owner's sudo key controls policy changes">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
-                  <td className="px-4 py-3">Custodial Provider Compromise</td>
+                  <td className="px-4 py-3">Service Provider Control</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user controls private key directly">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys in user's AWS HSM">N/A</td>
                   <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, no third-party custodian">N/A</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Service dependency - keys in TEE but if Coinbase goes down or blocks access, users cannot access funds">⚠️</td>
+                  <td className="px-4 py-3 text-yellow cursor-help" title="Service dependency - provider can revoke account access at any time; user cannot access funds without Coinbase infrastructure">⚠️</td>
                   <td className="px-4 py-3 text-green font-bold cursor-help" title="True self-custody - user's EOA owns smart account onchain; no middleman, works independently of any service provider">✅</td>
                 </tr>
 <tr className="border-b border-terminal-border/50">
