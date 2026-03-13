@@ -1,5 +1,6 @@
 import * as Tooltip from '@radix-ui/react-tooltip'
 import type { ReactNode } from 'react'
+import { useState, useEffect } from 'react'
 
 interface SecurityCellProps {
   value: ReactNode
@@ -8,6 +9,14 @@ interface SecurityCellProps {
 }
 
 export function SecurityCell({ value, detail, severity = 'neutral' }: SecurityCellProps) {
+  const [open, setOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Detect touch device
+    setIsMobile('ontouchstart' in window)
+  }, [])
+
   const borderColors = {
     green: '#98971a',
     yellow: '#d79921',
@@ -24,10 +33,16 @@ export function SecurityCell({ value, detail, severity = 'neutral' }: SecurityCe
 
   return (
     <Tooltip.Provider delayDuration={200}>
-      <Tooltip.Root>
+      <Tooltip.Root open={open} onOpenChange={setOpen}>
         <Tooltip.Trigger asChild>
           <span
             className={`${textColors[severity]} underline decoration-dotted cursor-pointer hover:opacity-80 transition-opacity`}
+            onClick={(e) => {
+              if (isMobile) {
+                e.preventDefault()
+                setOpen(!open)
+              }
+            }}
           >
             {value}
           </span>
@@ -36,6 +51,7 @@ export function SecurityCell({ value, detail, severity = 'neutral' }: SecurityCe
           <Tooltip.Content
             className="max-w-xs px-4 py-3 text-sm leading-relaxed"
             sideOffset={5}
+            side={isMobile ? 'top' : undefined}
             style={{
               backgroundColor: '#1d2021',
               border: `2px solid ${borderColors[severity]}`,
@@ -43,6 +59,11 @@ export function SecurityCell({ value, detail, severity = 'neutral' }: SecurityCe
               color: '#ebdbb2',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
               zIndex: 9999,
+            }}
+            onPointerDownOutside={() => {
+              if (isMobile) {
+                setOpen(false)
+              }
             }}
           >
             {detail}
