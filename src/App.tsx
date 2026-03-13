@@ -1,76 +1,7 @@
-import { useEffect } from 'react'
 import './App.css'
+import { SecurityCell } from './components/SecurityCell'
 
 function App() {
-  useEffect(() => {
-    // Mobile tooltip handler - show title on tap
-    const handleCellTap = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      
-      // Check if it's a tooltip cell
-      if (target.classList.contains('cursor-help') && target.hasAttribute('title')) {
-        const title = target.getAttribute('title')
-        if (!title) return
-        
-        // Remove any existing tooltip
-        document.querySelectorAll('.mobile-tooltip').forEach(el => el.remove())
-        
-        // Determine border color based on cell color class
-        let borderColor = '#ff0621' // default red
-        if (target.classList.contains('text-green')) {
-          borderColor = '#98971a' // green
-        } else if (target.classList.contains('text-yellow')) {
-          borderColor = '#d79921' // yellow
-        } else if (target.classList.contains('text-red')) {
-          borderColor = '#ff0621' // red
-        }
-        
-        // Create tooltip element
-        const tooltip = document.createElement('div')
-        tooltip.className = 'mobile-tooltip'
-        tooltip.textContent = title
-        
-        Object.assign(tooltip.style, {
-          position: 'fixed',
-          bottom: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          maxWidth: '90%',
-          width: 'auto',
-          padding: '12px 16px',
-          background: 'black',
-          border: `2px solid ${borderColor}`,
-          borderRadius: '8px',
-          color: '#ebdbb2',
-          fontSize: '14px',
-          lineHeight: '1.4',
-          zIndex: '9999',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-          textAlign: 'center'
-        })
-        
-        document.body.appendChild(tooltip)
-        
-        // Remove on next tap
-        setTimeout(() => {
-          const removeTooltip = () => {
-            tooltip.remove()
-            document.removeEventListener('click', removeTooltip)
-          }
-          document.addEventListener('click', removeTooltip)
-        }, 100)
-        
-        e.stopPropagation()
-      }
-    }
-    
-    // Only on mobile (touch devices)
-    if ('ontouchstart' in window) {
-      document.addEventListener('click', handleCellTap)
-      return () => document.removeEventListener('click', handleCellTap)
-    }
-  }, [])
-
   return (
     <div className="min-h-screen bg-terminal-bg">
       {/* Header */}
@@ -85,14 +16,6 @@ function App() {
               className="text-terminal-text hover:text-red transition-colors"
             >
               Security
-            </a>
-            <a
-              href="https://github.com/its-applekid/agent-actions"
-              className="text-terminal-text hover:text-red transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
             </a>
           </div>
         </div>
@@ -115,14 +38,6 @@ function App() {
               className="px-6 py-3 bg-red text-terminal-bg font-mono font-medium hover:opacity-90 transition-opacity"
             >
               See Comparison →
-            </a>
-            <a
-              href="https://github.com/its-applekid/agent-actions"
-              className="px-6 py-3 border border-terminal-border text-terminal-text hover:border-red hover:text-red transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
             </a>
           </div>
         </div>
@@ -219,55 +134,235 @@ function App() {
                 </tr>
               </thead>
               <tbody className="text-terminal-text">
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Prompt Injection</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - agent has full signing authority with zero guardrails against malicious instructions">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs whatever the agent requests via API, regardless of prompt source">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - agent controls wallet directly with no spending limits or prompt filtering">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - spending caps limit damage but agent can still be manipulated within allowed permissions">⚠️</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - onchain spending caps limit damage but agent can still be manipulated within allowed permissions; similar attack surface to AgentKit">⚠️</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - agent has full signing authority with zero guardrails against malicious instructions"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - KMS signs whatever the agent requests via API, regardless of prompt source"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - agent controls wallet directly with no spending limits or prompt filtering"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial - spending caps limit damage but agent can still be manipulated within allowed permissions"
+                      severity="yellow"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial - onchain spending caps limit damage but agent can still be manipulated within allowed permissions; similar attack surface to AgentKit"
+                      severity="yellow"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Private Key Exfiltration</td>
-                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - plaintext file readable by any process or malicious npm package">❌</td>
-                  <td className="px-4 py-3 text-green cursor-help" title="Protected - private key never leaves Hardware Security Module, signing is remote">✅</td>
-                  <td className="px-4 py-3 cursor-help" title="Critical risk - private key accessible in process memory with no additional isolation or protection">❌</td>
-                  <td className="px-4 py-3 text-green cursor-help" title="Protected - key in TEE (Trusted Execution Environment), hardware-isolated from agent process">✅</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - session key has limited scope; if stolen, attacker is restricted to permissions defined in Call Policy and spending caps">✅</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="Critical risk - plaintext file readable by any process or malicious npm package"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="✅" 
+                      detail="Protected - private key never leaves Hardware Security Module, signing is remote"
+                      severity="green"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="Critical risk - private key accessible in process memory with no additional isolation or protection"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="✅" 
+                      detail="Protected - key in TEE (Trusted Execution Environment), hardware-isolated from agent process"
+                      severity="green"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value={<span className="font-bold">✅</span>} 
+                      detail="Protected - session key has limited scope; if stolen, attacker is restricted to permissions defined in Call Policy and spending caps"
+                      severity="green"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Autonomous Exploitation</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - agent can interact with any smart contract including malicious ones">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - KMS signs any valid transaction regardless of destination">❌</td>
-                  <td className="px-4 py-3 cursor-help" title="No protection - access to 60+ integrated protocols and services with zero restrictions">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - limited to CDP-approved protocols; agent can still be exploited within allowed protocols">⚠️</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - curated DeFi registry limits protocols; agent can still be exploited within allowed protocols; advantage: onchain enforcement vs CDP off-chain">⚠️</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - agent can interact with any smart contract including malicious ones"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - KMS signs any valid transaction regardless of destination"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="No protection - access to 60+ integrated protocols and services with zero restrictions"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial - limited to CDP-approved protocols; agent can still be exploited within allowed protocols"
+                      severity="yellow"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial - curated DeFi registry limits protocols; agent can still be exploited within allowed protocols; advantage: onchain enforcement vs CDP off-chain"
+                      severity="yellow"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Agent Self-Modification</td>
-                  <td className="px-4 py-3 text-red cursor-help" title="Critical risk - agent can edit config file to remove all spending limits and guardrails">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial protection - IAM policy limits permission changes, but IAM itself could be compromised">⚠️</td>
-                  <td className="px-4 py-3 cursor-help" title="Vulnerable - agent can edit configuration to remove all guardrails and allowlists">❌</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Partial - CDP policy framework is external to agent BUT Coinbase controls what policies are available; users cannot configure their own spending limits">⚠️</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Protected - bot's session key has restricted permissions and cannot modify its own policy; owner's sudo key controls policy changes">✅</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="Critical risk - agent can edit config file to remove all spending limits and guardrails"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial protection - IAM policy limits permission changes, but IAM itself could be compromised"
+                      severity="yellow"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="❌" 
+                      detail="Vulnerable - agent can edit configuration to remove all guardrails and allowlists"
+                      severity="red"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Partial - CDP policy framework is external to agent BUT Coinbase controls what policies are available; users cannot configure their own spending limits"
+                      severity="yellow"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value={<span className="font-bold">✅</span>} 
+                      detail="Protected - bot's session key has restricted permissions and cannot modify its own policy; owner's sudo key controls policy changes"
+                      severity="green"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Service Provider Control</td>
-                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, user controls private key directly">N/A</td>
-                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, keys in user's AWS HSM">N/A</td>
-                  <td className="px-4 py-3 text-terminal-muted cursor-help" title="N/A - self-custody, no third-party custodian">N/A</td>
-                  <td className="px-4 py-3 text-yellow cursor-help" title="Policy control - Coinbase decides what the bot can do, not the user; provider controls spending limits and protocol access centrally">⚠️</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="True self-custody - user's EOA owns smart account onchain; no middleman, works independently of any service provider">✅</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="N/A" 
+                      detail="N/A - self-custody, user controls private key directly"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="N/A" 
+                      detail="N/A - self-custody, keys in user's AWS HSM"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="N/A" 
+                      detail="N/A - self-custody, no third-party custodian"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="⚠️" 
+                      detail="Policy control - Coinbase decides what the bot can do, not the user; provider controls spending limits and protocol access centrally"
+                      severity="yellow"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value={<span className="font-bold">✅</span>} 
+                      detail="True self-custody - user's EOA owns smart account onchain; no middleman, works independently of any service provider"
+                      severity="green"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Guardrail Enforcement</td>
-                  <td className="px-4 py-3 cursor-help" title="Config file - agent can modify to remove limits, no external enforcement">Config</td>
-                  <td className="px-4 py-3 cursor-help" title="IAM policy enforces - external to agent but requires deep AWS expertise to configure properly">IAM</td>
-                  <td className="px-4 py-3 cursor-help" title="Config file - no enforcement mechanism, purely developer responsibility">Config</td>
-                  <td className="px-4 py-3 cursor-help" title="CDP enforces centrally-controlled policy; Coinbase decides limits, not users; can block transactions">CDP</td>
-                  <td className="px-4 py-3 text-green font-bold cursor-help" title="Onchain enforcement - user-owned smart account with Call Policy + spending caps; works independently of any service provider">Onchain</td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="Config" 
+                      detail="Config file - agent can modify to remove limits, no external enforcement"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="IAM" 
+                      detail="IAM policy enforces - external to agent but requires deep AWS expertise to configure properly"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="Config" 
+                      detail="Config file - no enforcement mechanism, purely developer responsibility"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value="CDP" 
+                      detail="CDP enforces centrally-controlled policy; Coinbase decides limits, not users; can block transactions"
+                      severity="neutral"
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <SecurityCell 
+                      value={<span className="font-bold">Onchain</span>} 
+                      detail="Onchain enforcement - user-owned smart account with Call Policy + spending caps; works independently of any service provider"
+                      severity="green"
+                    />
+                  </td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Custodial Risk</td>
                   <td className="px-4 py-3 text-green">Self</td>
                   <td className="px-4 py-3 text-green">Self</td>
@@ -275,7 +370,7 @@ function App() {
                   <td className="px-4 py-3 text-yellow">Service-Dependent</td>
                   <td className="px-4 py-3 text-green font-bold">Self</td>
                 </tr>
-<tr className="border-b border-terminal-border/50">
+                <tr className="border-b border-terminal-border/50">
                   <td className="px-4 py-3">Vendor Lock-In</td>
                   <td className="px-4 py-3">None</td>
                   <td className="px-4 py-3 text-yellow">AWS</td>
@@ -353,18 +448,8 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex justify-between items-center text-sm">
             <p className="text-terminal-muted">
-              Built on <span className="text-red">Optimism</span>
+              {/* Footer content intentionally minimal */}
             </p>
-            <div className="flex gap-6">
-              <a
-                href="https://github.com/its-applekid/agent-actions"
-                className="text-terminal-muted hover:text-red transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-            </div>
           </div>
         </div>
       </footer>
